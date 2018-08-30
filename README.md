@@ -60,7 +60,7 @@ Getting the App Running
 Installing Python Packages and getting the app running is just like eating chocolate.
 
             cd /path/where/you/want/your/project
-            git clone git@bitbucket.org:verdanmahmood/flask-keycloak.git
+            git clone git@github.com:verdan/flask-keycloak.git
             cd flask-keycloak/
             
 Packages can be installed using pip command.
