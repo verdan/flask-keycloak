@@ -1,6 +1,6 @@
 from flask import Blueprint
 
-from app.utils import json_response
+from backend.utils import json_response
 
 api = Blueprint('api', __name__)
 
