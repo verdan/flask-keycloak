@@ -21,11 +21,12 @@ By default this template uses the following values:
 
 - Realm Name: flask-demo
 - Client Name: flask-client
-- Client Secret: '0a55e3fd-5c30-44ec-b623-26b69ff23f45' (this is auto-generated, please change it in config/client_secrets_[dev/prod].json accordingly)
+- Client Secret: '0a55e3fd-5c30-44ec-b623-26b69ff23f45' (this is auto-generated, please change it in `config/client_secrets_[dev/prod].json` accordingly)
 
 Please make sure to update the configurations if you are not using the above mentioned values (and for production)
 
 `1: config/client_secrets_dev.json or/and config/client_secrets_prod.json`
+
 `2: config/configurations.py`
 
 
