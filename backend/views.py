@@ -8,7 +8,7 @@ view = Blueprint('view', __name__)
 @view.route('/')
 def index():
     if oidc.user_loggedin:
-        return 'Logged In Home Page'
+        return 'Logged In Home Page. <a href="/logout">Logout</a>'
     else:
         return redirect(url_for('view.login'))
 
