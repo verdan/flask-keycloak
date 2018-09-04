@@ -71,7 +71,14 @@ This command installs the packages in the requirement file.
 Start the Server
             
             flask run
+
+
+API URLs
+-----------------------
             
-            
+            http://localhost:5000/portal/api/docs
+            http://localhost:5000/portal/api/spec
+
+
 [license-badge]: http://img.shields.io/badge/license-MIT-blue.svg?style=flat
 [license]: https://github.com/verdan/service-catalog/blob/master/LICENSE

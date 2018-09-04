@@ -11,6 +11,8 @@ class Config(object):
     OIDC_USER_INFO_ENABLED = True
     OIDC_SCOPES = ['openid', 'email', 'profile']
     OIDC_INTROSPECTION_AUTH_METHOD = 'client_secret_post'
+    SWAGGER_DOCS = 'docs'
+    SWAGGER_SPEC = 'spec'
 
 
 class ProductionConfig(Config):

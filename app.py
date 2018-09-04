@@ -1,5 +1,6 @@
 from flask import Flask
 from flask_oidc import OpenIDConnect
+from flask_swagger_ui import get_swaggerui_blueprint
 
 from config import config
 
@@ -27,5 +28,26 @@ def create_app():
     # This import here is to prevent the circular imports
     from backend.views import view as view_blueprint
     app.register_blueprint(view_blueprint)
+
+    # Registers our swagger UI blueprint
+    swagger_docs_prefix = '{}/{}'.format(
+        api_prefix,
+        app.config.get('SWAGGER_DOCS')
+    )
+    swagger_spec_prefix = '{}/{}'.format(
+        api_prefix,
+        app.config.get('SWAGGER_SPEC')
+    )
+    swaggerui_blueprint = get_swaggerui_blueprint(
+        swagger_docs_prefix,
+        swagger_spec_prefix,
+        config={
+            'app_name': "Tech API - template"
+        },
+    )
+    app.register_blueprint(
+        swaggerui_blueprint,
+        url_prefix=swagger_docs_prefix
+    )
 
     return app

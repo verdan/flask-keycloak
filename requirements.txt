@@ -1,3 +1,4 @@
 Flask==1.0.2
 flask-oidc==1.4.0
 Jinja2==2.10
+flask-swagger-ui==3.18.0
