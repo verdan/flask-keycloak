@@ -7,5 +7,5 @@
 # Mac OSX
 .DS_Store
 
-# Logs
+# Logs & Configs
 sftp-config.json
