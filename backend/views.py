@@ -25,6 +25,11 @@ def logout():
     oidc.logout()
     redirect_url = request.url_root.strip('/')
     keycloak_issuer = oidc.client_secrets.get('issuer')
-    keycloak_logout_url = '{}/protocol/openid-connect/logout'.format(keycloak_issuer)
+    keycloak_logout_url = '{}/protocol/openid-connect/logout'.format(
+        keycloak_issuer
+    )
 
-    return redirect('{}?redirect_uri={}'.format(keycloak_logout_url, redirect_url))
+    return redirect('{}?redirect_uri={}'.format(
+        keycloak_logout_url,
+        redirect_url)
+    )

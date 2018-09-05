@@ -1,0 +1,53 @@
+{
+  "info": {
+    "title": "Tech API - template",
+    "version": "0.1.0"
+  },
+  "basePath": "/portal/api/v1",
+  "schemes": [
+    "https"
+  ],
+  "swagger": "2.0",
+  "externalDocs": {
+    "description": "Find out more about Swagger",
+    "url": "http://swagger.io"
+  },
+  "paths": {
+    "/user/kill": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Session killed"
+          }
+        },
+        "summary": "Kill user session",
+        "tags": [
+          "user"
+        ]
+      }
+    }
+  },
+  "definitions": {
+    "user": {
+      "properties": {
+        "ck": {
+          "description": "User corporate key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "ck"
+      ]
+    }
+  }
+}
