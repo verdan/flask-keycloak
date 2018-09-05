@@ -13,6 +13,7 @@ class Config(object):
     OIDC_INTROSPECTION_AUTH_METHOD = 'client_secret_post'
     SWAGGER_DOCS = 'docs'
     SWAGGER_SPEC = 'spec'
+    SWAGGER_NAME = 'Tech API - template'
 
 
 class ProductionConfig(Config):

@@ -42,7 +42,7 @@ def create_app():
         swagger_docs_prefix,
         swagger_spec_prefix,
         config={
-            'app_name': "Tech API - template"
+            'app_name': app.config.get('SWAGGER_NAME')
         },
     )
     app.register_blueprint(
