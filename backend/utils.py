@@ -1,7 +1,8 @@
 import functools
-import logging
+from logging import Formatter
 
 from flask import jsonify, request
+
 
 def json_response(view):
     """
@@ -17,12 +18,14 @@ def json_response(view):
 
     return wrapped_view
 
+
 # formatter that adds information about url and ip to logs
-class RequestFormatter(logging.Formatter):
+class RequestFormatter(Formatter):
     def format(self, record):
         record.url = request.url
         record.remote_addr = request.remote_addr
         return super(RequestFormatter, self).format(record)
+
 
 def formatter():
     return RequestFormatter(

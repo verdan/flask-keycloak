@@ -1,19 +1,21 @@
 from flask import Flask
 from flask_oidc import OpenIDConnect
 from flask_swagger_ui import get_swaggerui_blueprint
+from flask.logging import create_logger
 
 from logging.handlers import RotatingFileHandler
+import logging
 
 from backend.utils import formatter
 from config import config
 
 app = None
 oidc = OpenIDConnect()
+_logger = None
 
-import logging
 
 def create_app():
-    global app, oidc
+    global app, oidc, _logger
     app = Flask(__name__)
 
     # Load the configurations based on the 'FLASK_ENV' environment variable
@@ -22,8 +24,9 @@ def create_app():
     # setup logging for access logs
     handler = RotatingFileHandler('access.log', maxBytes=10000, backupCount=1)
     handler.setFormatter(formatter())
-    handler.setLevel(logging.INFO)
+    handler.setLevel(logging.DEBUG if app.debug else logging.INFO)
     app.logger.addHandler(handler)
+    _logger = app.logger
 
     # Init the OpenIDConnect application instance
     oidc.init_app(app)
