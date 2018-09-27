@@ -1,11 +1,12 @@
 from flask import Flask
 from flask_oidc import OpenIDConnect
 from flask_swagger_ui import get_swaggerui_blueprint
-from flask.logging import create_logger
 
 from config import config
 from backend.utils import formatter
 import logging
+from logging.handlers import RotatingFileHandler
+
 import sys
 app = None
 oidc = OpenIDConnect()
@@ -35,10 +36,10 @@ def configure_logger(logger):
         h2.setFormatter(formatter())
         logger.addHandler(h2)
     else:  # elif config.HANDLER == "RotatingFileHandler":
-        handler = logging.handlers.RotatingFileHandler(
+        handler = RotatingFileHandler(
             'access.log', maxBytes=10000, backupCount=1)
         handler.setFormatter(formatter())
-        handler.setLevel(logging.DEBUG if is_debug else logging.INFO)
+        handler.setLevel(logging.DEBUG if app.debug else logging.INFO)
         logger.addHandler(handler)
     return logger
 
