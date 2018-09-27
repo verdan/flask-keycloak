@@ -1,8 +1,10 @@
 from flask import Blueprint, request, redirect, url_for
 
-from app import oidc, _logger
+from app import oidc, configure_logger
+import logging
 
 view = Blueprint('view', __name__)
+logger = configure_logger(logging.getLogger(__name__))
 
 
 @view.route('/')
@@ -16,7 +18,7 @@ def index():
 @view.route('/login')
 @oidc.require_login
 def login():
-    _logger.info(
+    logger.info(
         '%s logged in successfully', oidc.user_getfield('email'))
     return redirect(url_for('view.index'))
 
@@ -31,7 +33,7 @@ def logout():
     keycloak_logout_url = '{}/protocol/openid-connect/logout'.format(
         keycloak_issuer
     )
-    _logger.info('%s logged out', email)
+    logger.info('%s logged out', email)
 
     return redirect('{}?redirect_uri={}'.format(
         keycloak_logout_url,
