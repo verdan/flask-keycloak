@@ -5,7 +5,6 @@ from flask_swagger_ui import get_swaggerui_blueprint
 from config import config
 from backend.utils import configure_logger
 
-import sys
 app = None
 oidc = OpenIDConnect()
 _logger = None
