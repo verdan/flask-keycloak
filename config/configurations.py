@@ -14,12 +14,14 @@ class Config(object):
     SWAGGER_DOCS = 'docs'
     SWAGGER_SPEC = 'spec'
     SWAGGER_NAME = 'Tech API - template'
+    HANDLER = "RotatingFileHandler"
 
 
 class ProductionConfig(Config):
     OIDC_CLIENT_SECRETS = 'config/client_secrets_prod.json'
     OIDC_OPENID_REALM = 'flask-demo'
     OIDC_ID_TOKEN_COOKIE_SECURE = False
+    HANDLER = "StreamHandler"
 
 
 class DevelopmentConfig(Config):

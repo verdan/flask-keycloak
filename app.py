@@ -3,18 +3,22 @@ from flask_oidc import OpenIDConnect
 from flask_swagger_ui import get_swaggerui_blueprint
 
 from config import config
+from backend.utils import configure_logger
 
 app = None
 oidc = OpenIDConnect()
+_logger = None
 
 
 def create_app():
-    global app, oidc
+    global app, oidc, _logger
     app = Flask(__name__)
 
     # Load the configurations based on the 'FLASK_ENV' environment variable
     app.config.from_object(config)
-
+    
+    # Initialize logger
+    _logger = configure_logger(app)
     # Init the OpenIDConnect application instance
     oidc.init_app(app)
 
