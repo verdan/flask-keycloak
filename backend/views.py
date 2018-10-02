@@ -18,7 +18,7 @@ def index():
 @oidc.require_login
 def login():
     _logger.info(
-        '%s logged in successfully', oidc.user_getfield('email'))
+        '{} logged in successfully'.format(oidc.user_getfield('email')))
     return redirect(url_for('view.index'))
 
 
@@ -32,7 +32,7 @@ def logout():
     keycloak_logout_url = '{}/protocol/openid-connect/logout'.format(
         keycloak_issuer
     )
-    _logger.info('%s logged out', email)
+    _logger.info('{} logged out'.format(email))
 
     return redirect('{}?redirect_uri={}'.format(
         keycloak_logout_url,
