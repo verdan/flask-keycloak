@@ -1,9 +1,12 @@
 from flask import Flask
 from flask_oidc import OpenIDConnect
 from flask_swagger_ui import get_swaggerui_blueprint
+from flask_session import Session
+from flask_sqlalchemy import SQLAlchemy
 
 from config import config
 from backend.utils import configure_logger
+from backend.storage import SessionCredentialStore
 
 app = None
 oidc = OpenIDConnect()
@@ -16,6 +19,16 @@ def create_app():
 
     # Load the configurations based on the 'FLASK_ENV' environment variable
     app.config.from_object(config)
+
+     # setup session database
+    db = SQLAlchemy(app)
+    app.config["SESSION_SQLALCHEMY_TABLE"] = 'sessions'
+    app.config["SESSION_SQLALCHEMY"] = db
+    session = Session(app)
+    session.app.session_interface.db.create_all()
+    # Init the OpenIDConnect application instance
+    # oidc.init_app(app)
+    oidc = OpenIDConnect(app, SessionCredentialStore())
     
     # Initialize logger
     _logger = configure_logger(app)
