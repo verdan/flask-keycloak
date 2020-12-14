@@ -1,5 +1,7 @@
 [![MIT License][license-badge]][license]
 
+## ~~ PLEAEE DON'T USE THIS. NOT BEING MAINTAINED ANYMORE, IN FAVOR OF THIS REPO: https://github.com/verdan/flaskoidc ~~
+
 # Flask Keycloak
 Minimal Flask-Keycloak application, built using the modular approach. 
 
