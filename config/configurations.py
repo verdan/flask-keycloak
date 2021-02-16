@@ -1,3 +1,5 @@
+import os
+
 PRODUCTION = 'production'
 DEVELOPMENT = 'development'
 
@@ -15,6 +17,9 @@ class Config(object):
     SWAGGER_SPEC = 'spec'
     SWAGGER_NAME = 'Tech API - template'
     HANDLER = "RotatingFileHandler"
+    SESSION_TYPE = 'sqlalchemy'
+    SQLALCHEMY_TRACK_MODIFICATIONS = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite://'
 
 
 class ProductionConfig(Config):
@@ -22,6 +27,11 @@ class ProductionConfig(Config):
     OIDC_OPENID_REALM = 'flask-demo'
     OIDC_ID_TOKEN_COOKIE_SECURE = False
     HANDLER = "StreamHandler"
+
+    if "DATABASE_URL" in os.environ:
+        SQLALCHEMY_DATABASE_URI = os.environ["DATABASE_URL"]
+    if "FLASK_SECRET_KEY" in os.environ:
+        SECRET_KEY = os.environ["FLASK_SECRET_KEY"]
 
 
 class DevelopmentConfig(Config):
@@ -31,3 +41,4 @@ class DevelopmentConfig(Config):
     OIDC_CLIENT_SECRETS = 'config/client_secrets_dev.json'
     OIDC_OPENID_REALM = 'flask-demo'
     OIDC_ID_TOKEN_COOKIE_SECURE = False
+    SQLALCHEMY_DATABASE_URI = 'sqlite:///sessions.db'
